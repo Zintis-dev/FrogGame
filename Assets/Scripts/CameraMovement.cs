@@ -9,8 +9,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector2 xLimit = new Vector2(-20, 20);
     [SerializeField] private Vector2 yLimit = new Vector2(4, 20);
 
-    [SerializeField] private Vector3 defaultPosition = new Vector3 (10, 8, 2);
-    [SerializeField] private Vector3 defaultRotation = new Vector3(25, 0, 0);
+    [SerializeField] private Vector3 defaultPosition = new Vector3 (10, 12, 10);
+    [SerializeField] private Vector3 defaultRotation = new Vector3(70, 0, 0);
 
     void Update()
     {
