@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float cameraSpeed = 15f;
-    public float rotateSpeed = 100f;
+    [SerializeField] private float cameraSpeed = 15f;
+    [SerializeField] private float rotateSpeed = 100f;
 
-    private Vector2 zLimit = new Vector2(-20, 20);
-    private Vector2 xLimit = new Vector2(-20, 20);
+    [SerializeField] private Vector2 zLimit = new Vector2(-20, 20);
+    [SerializeField] private Vector2 xLimit = new Vector2(-20, 20);
+    [SerializeField] private Vector2 yLimit = new Vector2(4, 20);
+
+    [SerializeField] private Vector3 defaultPosition = new Vector3 (10, 8, 2);
+    [SerializeField] private Vector3 defaultRotation = new Vector3(25, 0, 0);
 
     void Update()
     {
@@ -18,13 +22,15 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) inputDirection.z -= 1f;
         if (Input.GetKey(KeyCode.A)) inputDirection.x -= 1f;
         if (Input.GetKey(KeyCode.D)) inputDirection.x += 1f;
+        if (Input.GetKey(KeyCode.LeftShift)) inputDirection.y += 1f;
+        if (Input.GetKey(KeyCode.LeftControl)) inputDirection.y -= 1f;
 
         if (inputDirection != Vector3.zero)
         {
             inputDirection.Normalize();
         }
 
-        Vector3 moveDirection = transform.forward * inputDirection.z + transform.right * inputDirection.x;
+        Vector3 moveDirection = transform.forward * inputDirection.z + transform.right * inputDirection.x + transform.up * inputDirection.y;
         transform.position += moveDirection * cameraSpeed * Time.deltaTime;
 
         // Camera Rotation
@@ -39,6 +45,14 @@ public class CameraMovement : MonoBehaviour
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp (clampedPosition.x, xLimit.x, xLimit.y);
         clampedPosition.z = Mathf.Clamp (clampedPosition.z, zLimit.x, zLimit.y);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, yLimit.x, yLimit.y);
         transform.position = clampedPosition;
+
+        // Reset to default location
+        if (Input.GetKey(KeyCode.R))
+        {
+            transform.position = defaultPosition;
+            transform.eulerAngles = defaultRotation;
+        }
     }
 }
