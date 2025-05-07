@@ -18,7 +18,7 @@ public class CameraMovement : MonoBehaviour
         // Camera movement
         Vector3 inputDirection = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W)) inputDirection.z += 1f;
+        if (Input.GetKey(KeyCode.W))inputDirection.z += 1f;
         if (Input.GetKey(KeyCode.S)) inputDirection.z -= 1f;
         if (Input.GetKey(KeyCode.A)) inputDirection.x -= 1f;
         if (Input.GetKey(KeyCode.D)) inputDirection.x += 1f;
@@ -30,7 +30,15 @@ public class CameraMovement : MonoBehaviour
             inputDirection.Normalize();
         }
 
-        Vector3 moveDirection = transform.forward * inputDirection.z + transform.right * inputDirection.x + Vector3.up * inputDirection.y;
+        Vector3 flatForward = transform.forward;
+        flatForward.y = 0f;
+        flatForward.Normalize();
+
+        Vector3 flatRight = transform.right;
+        flatRight.y = 0f;
+        flatRight.Normalize();
+
+        Vector3 moveDirection = flatForward * inputDirection.z + flatRight * inputDirection.x + Vector3.up * inputDirection.y;
         transform.position += moveDirection * cameraSpeed * Time.deltaTime;
 
         // Camera Rotation
