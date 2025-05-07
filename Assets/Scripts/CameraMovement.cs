@@ -18,8 +18,8 @@ public class CameraMovement : MonoBehaviour
         // Camera movement
         Vector3 inputDirection = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W)) inputDirection.z += 2f;
-        if (Input.GetKey(KeyCode.S)) inputDirection.z -= 2f;
+        if (Input.GetKey(KeyCode.W)) inputDirection.z += 1f;
+        if (Input.GetKey(KeyCode.S)) inputDirection.z -= 1f;
         if (Input.GetKey(KeyCode.A)) inputDirection.x -= 1f;
         if (Input.GetKey(KeyCode.D)) inputDirection.x += 1f;
         if (Input.GetKey(KeyCode.LeftShift)) inputDirection.y += 1f;
