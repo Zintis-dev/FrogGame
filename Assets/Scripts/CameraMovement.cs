@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector2 xLimit = new Vector2(-10, 10);
     [SerializeField] private Vector2 yLimit = new Vector2(4, 20);
 
-    [SerializeField] private Vector3 defaultPosition = new Vector3 (0, 9, -4);
+    [SerializeField] private Vector3 defaultPosition = new Vector3 (0, 8, -4);
     [SerializeField] private Vector3 defaultRotation = new Vector3(70, 0, 0);
 
     void Update()
@@ -18,8 +18,8 @@ public class CameraMovement : MonoBehaviour
         // Camera movement
         Vector3 inputDirection = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W)) inputDirection.z += 1f;
-        if (Input.GetKey(KeyCode.S)) inputDirection.z -= 1f;
+        if (Input.GetKey(KeyCode.W)) inputDirection.z += 2f;
+        if (Input.GetKey(KeyCode.S)) inputDirection.z -= 2f;
         if (Input.GetKey(KeyCode.A)) inputDirection.x -= 1f;
         if (Input.GetKey(KeyCode.D)) inputDirection.x += 1f;
         if (Input.GetKey(KeyCode.LeftShift)) inputDirection.y += 1f;
@@ -30,7 +30,7 @@ public class CameraMovement : MonoBehaviour
             inputDirection.Normalize();
         }
 
-        Vector3 moveDirection = transform.forward * inputDirection.z + transform.right * inputDirection.x + transform.up * inputDirection.y;
+        Vector3 moveDirection = transform.forward * inputDirection.z + transform.right * inputDirection.x + Vector3.up * inputDirection.y;
         transform.position += moveDirection * cameraSpeed * Time.deltaTime;
 
         // Camera Rotation
