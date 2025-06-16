@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 052da8a1d111ab74898836132148858e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cellIndicator: {instanceID: 0}
+  - inputManager: {instanceID: 0}
+  - grid: {instanceID: 0}
+  - testObject: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

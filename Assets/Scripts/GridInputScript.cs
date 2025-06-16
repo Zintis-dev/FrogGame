@@ -4,18 +4,21 @@ public class GridInputScript : MonoBehaviour
 {
     [SerializeField] private Camera sceneCamera;
     [SerializeField] private LayerMask placementLayermask;
-    private Vector3 lastPosition;
 
-    public Vector3 GetSelectedMapPosition()
+    public bool TryGetSelectedMapPosition(out Vector3 position)
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = sceneCamera.nearClipPlane;
         Ray ray = sceneCamera.ScreenPointToRay(mousePos);
         RaycastHit hit;
+
         if (Physics.Raycast(ray, out hit, 100, placementLayermask) && hit.collider.CompareTag("Grid"))
         {
-            lastPosition = hit.point;
+            position = hit.point;
+            return true;
         }
-        return lastPosition;
+
+        position = Vector3.zero;
+        return false;
     }
 }
