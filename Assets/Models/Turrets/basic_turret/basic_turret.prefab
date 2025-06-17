@@ -63,6 +63,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 747ff2f25cd2e7844a74098bad4f744a, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1466368645483934969}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 747ff2f25cd2e7844a74098bad4f744a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6663757754529152481}
   m_SourcePrefab: {fileID: 100100000, guid: 747ff2f25cd2e7844a74098bad4f744a, type: 3}
 --- !u!1 &2764279069351524791 stripped
 GameObject:
@@ -82,3 +85,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &-6663757754529152481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2764279069351524791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278e947d944953d408923ee74a2d37ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectDatabase: {fileID: 11400000, guid: 44473a4bbfd7fa648934241852657a79, type: 2}
+  turretObjectId: 2
+  shootRange: 10
+  shootCooldown: 1

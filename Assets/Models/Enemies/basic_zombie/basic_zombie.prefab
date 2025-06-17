@@ -1450,13 +1450,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6583695879182852727}
-  - component: {fileID: 5186997952640166485}
   - component: {fileID: -1608607161785349731}
   - component: {fileID: -1603937292279238147}
   - component: {fileID: 3953204248236942225}
+  - component: {fileID: -5490645266639130125}
+  - component: {fileID: -6451088810898191228}
   m_Layer: 0
   m_Name: basic_zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1482,28 +1483,6 @@ Transform:
   - {fileID: 6948163495048438538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &5186997952640166485
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8719723222225706818}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 001ad33a9fc101d4fabfeed5d6c6c080, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!195 &-1608607161785349731
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1561,6 +1540,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1500a46c8175c1849927ebff02cd07b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &-5490645266639130125
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8719723222225706818}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b8dfb111450e1347bab766d4c9dd0ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6451088810898191228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8719723222225706818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addfcd5e99e5e9341927c544d551a228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &8821118137160644071
 GameObject:
   m_ObjectHideFlags: 0

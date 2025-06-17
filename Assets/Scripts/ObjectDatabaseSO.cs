@@ -46,5 +46,7 @@ public class ObjectData
     [field: SerializeField]
     public Sprite Icon { get; private set; }
 
+    [field: SerializeField]
+    public GameObject ProjectilePrefab { get; private set; }
 
 }

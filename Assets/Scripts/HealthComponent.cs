@@ -23,4 +23,7 @@ public class HealthComponent : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public float GetHealth() => currentHealth;
+    public float GetMaxHealth() => maxHealth;
 }
