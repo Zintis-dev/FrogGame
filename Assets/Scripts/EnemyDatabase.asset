@@ -24,3 +24,14 @@ MonoBehaviour:
     <Reward>k__BackingField: 20
     <Icon>k__BackingField: {fileID: 0}
     <Description>k__BackingField: Basic Enemy
+  - <Name>k__BackingField: Slow Zombie
+    <ID>k__BackingField: 2
+    <Prefab>k__BackingField: {fileID: 5529951788758803782, guid: 66f97fdfcfa457f44809b8ec62dd7c95, type: 3}
+    <Health>k__BackingField: 250
+    <Damage>k__BackingField: 80
+    <Speed>k__BackingField: 1
+    <AttackRange>k__BackingField: 2
+    <AttackCooldown>k__BackingField: 0.5
+    <Reward>k__BackingField: 50
+    <Icon>k__BackingField: {fileID: 0}
+    <Description>k__BackingField: Basic Enemy

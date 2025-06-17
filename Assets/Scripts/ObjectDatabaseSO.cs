@@ -49,4 +49,12 @@ public class ObjectData
     [field: SerializeField]
     public GameObject ProjectilePrefab { get; private set; }
 
+    [field: SerializeField] 
+    public float Health { get; private set; } = 100f;
+
+    [field: SerializeField] 
+    public float AttackRate { get; private set; } = 1f;
+
+    [field: SerializeField]
+    public float ShootRange { get; private set; } = 10f;
 }

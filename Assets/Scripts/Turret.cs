@@ -6,10 +6,9 @@ public class Turret : MonoBehaviour
     [SerializeField] private int turretObjectId;
 
     private ObjectData objectData;
+    private HealthComponent health;
 
-    [SerializeField] private float shootRange = 10f;
-    [SerializeField] private float shootCooldown = 1f;
-
+    private float shootCooldown;
     private float cooldownTimer = 0f;
 
     private EnemyBehavior currentTarget;
@@ -19,13 +18,37 @@ public class Turret : MonoBehaviour
         if (objectDatabase != null)
         {
             objectData = objectDatabase.objectData.Find(o => o.ID == turretObjectId);
-
             if (objectData == null)
                 Debug.LogWarning($"ObjectData with ID {turretObjectId} not found in database.");
         }
         else
         {
             Debug.LogWarning("ObjectDatabaseSO not assigned in Turret!");
+        }
+
+        health = GetComponent<HealthComponent>();
+        if (health == null)
+        {
+            health = gameObject.AddComponent<HealthComponent>();
+        }
+
+        health.SetMaxHealth(objectData != null ? objectData.Health : 100f);
+        health.OnDeath += HandleDeath;
+
+        shootCooldown = objectData != null && objectData.AttackRate > 0f ? 1f / objectData.AttackRate : 1f;
+    }
+
+    private void HandleDeath()
+    {
+        Debug.Log($"{gameObject.name} Turret is dead.");
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (health != null)
+        {
+            health.OnDeath -= HandleDeath;
         }
     }
 
@@ -54,7 +77,7 @@ public class Turret : MonoBehaviour
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         EnemyBehavior closestEnemy = null;
-        float closestDist = shootRange;
+        float closestDist = objectData.ShootRange;
 
         foreach (var enemyGO in enemies)
         {
@@ -63,7 +86,7 @@ public class Turret : MonoBehaviour
                 continue;
 
             float dist = Vector3.Distance(transform.position, enemy.transform.position);
-            if (dist <= shootRange && dist < closestDist)
+            if (dist <= objectData.ShootRange && dist < closestDist)
             {
                 closestDist = dist;
                 closestEnemy = enemy;
