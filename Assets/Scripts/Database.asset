@@ -16,8 +16,16 @@ MonoBehaviour:
   - <Name>k__BackingField: Watch Tower
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 919132149155446097, guid: 6d3804d087b86c24c98b86ad3e84a3a2, type: 3}
+    <Prefab>k__BackingField: {fileID: 2707992840409567944, guid: 60d0c3da941f6024f830db6d0e04009e, type: 3}
     <Damage>k__BackingField: 10
     <Description>k__BackingField: High range, fast attack, low damage
     <Price>k__BackingField: 100
     <Icon>k__BackingField: {fileID: 21300000, guid: efe0848d9ec8b424881ef698fdf87622, type: 3}
+  - <Name>k__BackingField: Basic Turret
+    <ID>k__BackingField: 2
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 2764279069351524791, guid: 66826f4a323eb9b41a0c048d54bf3d7c, type: 3}
+    <Damage>k__BackingField: 20
+    <Description>k__BackingField: Low range, Slow attack, high damage
+    <Price>k__BackingField: 150
+    <Icon>k__BackingField: {fileID: 21300000, guid: ab9c07c40b58d834783f2ac517a57f71, type: 3}
