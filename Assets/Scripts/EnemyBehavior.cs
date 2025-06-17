@@ -11,13 +11,22 @@ public class EnemyBehavior : MonoBehaviour
     private float checkTimer;
 
     private float lastAttackTime;
+    private HealthComponent health;
 
     public void Initialize(EnemyData enemyData)
     {
         data = enemyData;
+
         agent = GetComponent<NavMeshAgent>();
         if (agent != null)
             agent.speed = data.Speed;
+
+        health = GetComponent<HealthComponent>();
+        if (health == null)
+            health = gameObject.AddComponent<HealthComponent>();
+        health.SetMaxHealth(data.Health);
+        health.OnDeath -= HandleDeath;
+        health.OnDeath += HandleDeath;
 
         FindClosestTarget();
     }
@@ -31,23 +40,23 @@ public class EnemyBehavior : MonoBehaviour
             FindClosestTarget();
         }
 
-        if (target != null)
+        if (target == null || agent == null) return;
+
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+
+        if (distance <= data.AttackRange)
         {
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-            if (distance <= data.AttackRange)
+            if (Time.time - lastAttackTime >= data.AttackCooldown)
             {
-                if (Time.time - lastAttackTime >= data.AttackCooldown)
-                {
-                    AttackTarget();
-                    lastAttackTime = Time.time;
-                }
-                agent.isStopped = true;
+                AttackTarget();
+                lastAttackTime = Time.time;
             }
-            else
-            {
-                agent.isStopped = false;
-                agent.SetDestination(target.transform.position);
-            }
+            agent.isStopped = true;
+        }
+        else
+        {
+            agent.isStopped = false;
+            agent.SetDestination(target.transform.position);
         }
     }
 
@@ -74,9 +83,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             target = newTarget;
             if (agent != null && target != null)
-            {
                 agent.SetDestination(target.transform.position);
-            }
         }
         else if (target != null && agent != null)
         {
@@ -88,16 +95,24 @@ public class EnemyBehavior : MonoBehaviour
     {
         var healthComponent = target.GetComponent<HealthComponent>();
         if (healthComponent != null)
-        {
             healthComponent.TakeDamage(data.Damage);
-        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(float damage)
     {
-        if (other.gameObject == target)
-        {
-            Destroy(gameObject);
-        }
+        health?.TakeDamage(damage);
+    }
+
+    private void HandleDeath()
+    {
+        Debug.Log($"{gameObject.name} HandleDeath called. Adding reward {data.Reward}");
+        EconomyManager.Instance.AddCoins(data.Reward);
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (health != null)
+            health.OnDeath -= HandleDeath;
     }
 }

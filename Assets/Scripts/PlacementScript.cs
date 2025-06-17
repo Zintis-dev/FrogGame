@@ -56,6 +56,17 @@ public class PlacementScript : MonoBehaviour
         }
 
         ObjectData selectedObject = selectionUI.SelectedObject;
+        if (selectedObject == null)
+        {
+            Debug.Log("No object selected.");
+            return;
+        }
+
+        if (!EconomyManager.Instance.SpendCoins(selectedObject.Price))
+        {
+            Debug.Log("Not enough coins to place this object.");
+            return;
+        }
 
         Vector3 cellWorldPosition = grid.CellToWorld(gridPosition);
         Vector3 offset = new Vector3(grid.cellSize.x / 2f, 0f, grid.cellSize.z / 2f);
@@ -75,23 +86,6 @@ public class PlacementScript : MonoBehaviour
         {
             occupiedCells.Remove(gridPos);
             placedObjects.Remove(obj);
-        }
-    }
-}
-public class ObjectDestroyNotifier : MonoBehaviour
-{
-    private PlacementScript placementScript;
-
-    public void Setup(PlacementScript script)
-    {
-        placementScript = script;
-    }
-
-    private void OnDestroy()
-    {
-        if (placementScript != null)
-        {
-            placementScript.NotifyObjectDestroyed(gameObject);
         }
     }
 }

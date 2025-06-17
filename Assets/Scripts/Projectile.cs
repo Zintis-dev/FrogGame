@@ -45,6 +45,7 @@ public class Projectile : MonoBehaviour
         if (health != null)
         {
             health.TakeDamage(damage);
+            Debug.Log($"Projectile hit {target.name} dealing {damage} damage.");
         }
         Destroy(gameObject);
     }
