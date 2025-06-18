@@ -12,6 +12,7 @@ public class Turret : MonoBehaviour
     private float cooldownTimer = 0f;
 
     private EnemyBehavior currentTarget;
+    private Transform firePoint;
 
     private void Start()
     {
@@ -36,6 +37,12 @@ public class Turret : MonoBehaviour
         health.OnDeath += HandleDeath;
 
         shootCooldown = objectData != null && objectData.AttackRate > 0f ? 1f / objectData.AttackRate : 1f;
+
+        firePoint = transform.Find("FirePoint");
+        if (firePoint == null)
+        {
+            Debug.LogWarning("FirePoint not found as a child of Turret, projectiles will spawn at turret position.");
+        }
     }
 
     private void HandleDeath()
@@ -118,7 +125,10 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        GameObject projGO = Instantiate(objectData.ProjectilePrefab, transform.position, Quaternion.identity);
+        Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position;
+        Quaternion spawnRot = firePoint != null ? firePoint.rotation : Quaternion.identity;
+
+        GameObject projGO = Instantiate(objectData.ProjectilePrefab, spawnPos, spawnRot);
         Projectile proj = projGO.GetComponent<Projectile>();
         if (proj != null)
         {
