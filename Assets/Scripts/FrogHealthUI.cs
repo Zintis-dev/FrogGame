@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class FrogHealthUI : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class FrogHealthUI : MonoBehaviour
     {
         frogHPText.text = "0";
         Debug.Log("Frog died! Game Over!");
+        SceneManager.LoadScene("GameOver");
     }
 
     private void OnDestroy()
