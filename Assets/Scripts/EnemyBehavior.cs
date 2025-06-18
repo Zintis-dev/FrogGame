@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EnemyBehavior : MonoBehaviour
 
     private float lastAttackTime;
     private HealthComponent health;
+
+    public event Action OnDeath;
 
     public void Initialize(EnemyData enemyData)
     {
@@ -107,6 +110,8 @@ public class EnemyBehavior : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} HandleDeath called. Adding reward {data.Reward}");
         EconomyManager.Instance.AddCoins(data.Reward);
+
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 
