@@ -8,6 +8,7 @@ TagManager:
   - Turret
   - Frog
   - Enemy
+  - CoinsText
   layers:
   - Default
   - TransparentFX

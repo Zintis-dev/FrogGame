@@ -1,10 +1,12 @@
-using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine;
 
 public class EconomyManager : MonoBehaviour
 {
     public static EconomyManager Instance { get; private set; }
 
+    private int startCoinAmount = 500;
     public int Coins { get; private set; } = 500;
 
     [Header("UI")]
@@ -21,6 +23,26 @@ public class EconomyManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         UpdateUI();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject coinsGO = GameObject.FindWithTag("CoinsText");
+        if (coinsGO != null)
+        {
+            coinsText = coinsGO.GetComponent<TextMeshProUGUI>();
+            UpdateUI();
+        }
     }
 
     public bool SpendCoins(int amount)
@@ -44,11 +66,18 @@ public class EconomyManager : MonoBehaviour
         Debug.Log($"Earned {amount} coins. Total: {Coins}");
     }
 
+    public void ResetEconomy()
+    {
+        Coins = startCoinAmount;
+        UpdateUI();
+        Debug.Log($"Economy reset. Coins: {Coins}");
+    }
+
     private void UpdateUI()
     {
         if (coinsText != null)
         {
-            coinsText.text = $"{Coins}";
+            coinsText.text = Coins.ToString();
         }
     }
 }

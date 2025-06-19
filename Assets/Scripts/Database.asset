@@ -37,3 +37,15 @@ MonoBehaviour:
     <Health>k__BackingField: 100
     <AttackRate>k__BackingField: 1
     <ShootRange>k__BackingField: 10
+  - <Name>k__BackingField: Rock Turret
+    <ID>k__BackingField: 3
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 5025283344991574575, guid: 856be2a9e6662c9458e21507f1afb351, type: 3}
+    <Damage>k__BackingField: 50
+    <Description>k__BackingField: Low range, Slow attack, high damage
+    <Price>k__BackingField: 300
+    <Icon>k__BackingField: {fileID: 21300000, guid: ab9c07c40b58d834783f2ac517a57f71, type: 3}
+    <ProjectilePrefab>k__BackingField: {fileID: 8561120502374992526, guid: 36832fafeb96ae64ab3a12dcdb86308c, type: 3}
+    <Health>k__BackingField: 300
+    <AttackRate>k__BackingField: 0.3
+    <ShootRange>k__BackingField: 1.5
