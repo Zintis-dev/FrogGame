@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyData:
   - <Name>k__BackingField: Basic Zombie
     <ID>k__BackingField: 1
-    <Prefab>k__BackingField: {fileID: 8719723222225706818, guid: 12822a345f6f0494691f3711e0c4284c, type: 3}
+    <Prefab>k__BackingField: {fileID: 8075820998608964579, guid: 826415e029d824e43a219395e4c8de6b, type: 3}
     <Health>k__BackingField: 100
     <Damage>k__BackingField: 10
     <Speed>k__BackingField: 2
@@ -26,12 +26,23 @@ MonoBehaviour:
     <Description>k__BackingField: Basic Enemy
   - <Name>k__BackingField: Slow Zombie
     <ID>k__BackingField: 2
-    <Prefab>k__BackingField: {fileID: 5529951788758803782, guid: 66f97fdfcfa457f44809b8ec62dd7c95, type: 3}
-    <Health>k__BackingField: 250
-    <Damage>k__BackingField: 50
+    <Prefab>k__BackingField: {fileID: 1300662921714290339, guid: 4b50ee8bce1389d4ead1626be944fd14, type: 3}
+    <Health>k__BackingField: 280
+    <Damage>k__BackingField: 10
     <Speed>k__BackingField: 1
     <AttackRange>k__BackingField: 2
     <AttackCooldown>k__BackingField: 0.5
-    <Reward>k__BackingField: 50
+    <Reward>k__BackingField: 10
     <Icon>k__BackingField: {fileID: 0}
     <Description>k__BackingField: Basic Enemy
+  - <Name>k__BackingField: Drug Zombie
+    <ID>k__BackingField: 3
+    <Prefab>k__BackingField: {fileID: 4079618391189004711, guid: 1d0ddcd82b95add44b589e2f9af79100, type: 3}
+    <Health>k__BackingField: 50
+    <Damage>k__BackingField: 20
+    <Speed>k__BackingField: 6
+    <AttackRange>k__BackingField: 2
+    <AttackCooldown>k__BackingField: 3
+    <Reward>k__BackingField: 25
+    <Icon>k__BackingField: {fileID: 0}
+    <Description>k__BackingField: Fast Enemy

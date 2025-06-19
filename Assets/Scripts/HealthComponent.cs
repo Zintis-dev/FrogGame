@@ -8,11 +8,14 @@ public class HealthComponent : MonoBehaviour
     private bool isDead = false;
 
     public event Action OnDeath;
-    public event Action<float, float> OnHealthChanged;  // currentHealth, maxHealth
+    public event Action<float, float> OnHealthChanged; // currentHealth, maxHealth
+
+    private Animator animator;
 
     private void Awake()
     {
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
@@ -38,6 +41,12 @@ public class HealthComponent : MonoBehaviour
         isDead = true;
 
         Debug.Log($"{gameObject.name} is dying.");
+
+        if (animator != null && animator.HasParameter("Die"))
+        {
+            animator.SetTrigger("Die");
+        }
+
         OnDeath?.Invoke();
     }
 
@@ -50,5 +59,17 @@ public class HealthComponent : MonoBehaviour
         currentHealth = maxHealth;
         isDead = false;
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+}
+
+public static class AnimatorExtensions
+{
+    public static bool HasParameter(this Animator animator, string paramName)
+    {
+        foreach (var param in animator.parameters)
+        {
+            if (param.name == paramName) return true;
+        }
+        return false;
     }
 }

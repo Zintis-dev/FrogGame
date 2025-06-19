@@ -7,12 +7,15 @@ public class EnemyBehavior : MonoBehaviour
     private EnemyData data;
     private NavMeshAgent agent;
     private GameObject target;
+    private Animator animator;
+    private HealthComponent health;
 
     private float checkInterval = 1f;
     private float checkTimer;
-
     private float lastAttackTime;
-    private HealthComponent health;
+
+    private enum AnimationState { Idle, Walk, Attack, Die }
+    private AnimationState currentState = AnimationState.Idle;
 
     public event Action OnDeath;
 
@@ -24,6 +27,8 @@ public class EnemyBehavior : MonoBehaviour
         if (agent != null)
             agent.speed = data.Speed;
 
+        animator = GetComponent<Animator>();
+
         health = GetComponent<HealthComponent>();
         if (health == null)
             health = gameObject.AddComponent<HealthComponent>();
@@ -32,6 +37,7 @@ public class EnemyBehavior : MonoBehaviour
         health.OnDeath += HandleDeath;
 
         FindClosestTarget();
+        SetAnimationState(AnimationState.Walk);
     }
 
     private void Update()
@@ -54,12 +60,15 @@ public class EnemyBehavior : MonoBehaviour
                 AttackTarget();
                 lastAttackTime = Time.time;
             }
+
             agent.isStopped = true;
+            SetAnimationState(AnimationState.Attack);
         }
         else
         {
             agent.isStopped = false;
             agent.SetDestination(target.transform.position);
+            SetAnimationState(AnimationState.Walk);
         }
     }
 
@@ -109,10 +118,43 @@ public class EnemyBehavior : MonoBehaviour
     private void HandleDeath()
     {
         Debug.Log($"{gameObject.name} HandleDeath called. Adding reward {data.Reward}");
-        EconomyManager.Instance.AddCoins(data.Reward);
 
+        EconomyManager.Instance.AddCoins(data.Reward);
         OnDeath?.Invoke();
-        Destroy(gameObject);
+
+        SetAnimationState(AnimationState.Die);
+
+        agent.enabled = false;
+        enabled = false;
+
+        Destroy(gameObject, 3f);
+    }
+
+    private void SetAnimationState(AnimationState newState)
+    {
+        if (currentState == newState) return;
+        currentState = newState;
+
+        switch (newState)
+        {
+            case AnimationState.Idle:
+                animator?.SetBool("IsMoving", false);
+                animator?.SetBool("IsAttacking", false);
+                break;
+            case AnimationState.Walk:
+                animator?.SetBool("IsMoving", true);
+                animator?.SetBool("IsAttacking", false);
+                break;
+            case AnimationState.Attack:
+                animator?.SetBool("IsMoving", false);
+                animator?.SetBool("IsAttacking", true);
+                break;
+            case AnimationState.Die:
+                animator?.SetTrigger("Die");
+                animator?.SetBool("IsMoving", false);
+                animator?.SetBool("IsAttacking", false);
+                break;
+        }
     }
 
     private void OnDestroy()
