@@ -17,14 +17,14 @@ MonoBehaviour:
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 6592412241935162340, guid: cc71dae3b08f2504e943eb300dfb1622, type: 3}
-    <Damage>k__BackingField: 10
+    <Damage>k__BackingField: 5
     <Description>k__BackingField: High range, fast attack, low damage
     <Price>k__BackingField: 100
     <Icon>k__BackingField: {fileID: 21300000, guid: efe0848d9ec8b424881ef698fdf87622, type: 3}
     <ProjectilePrefab>k__BackingField: {fileID: 9198893376953180154, guid: 801ba660fbdf5f540a0e41cbdff6b056, type: 3}
     <Health>k__BackingField: 100
     <AttackRate>k__BackingField: 2
-    <ShootRange>k__BackingField: 20
+    <ShootRange>k__BackingField: 15
   - <Name>k__BackingField: Basic Turret
     <ID>k__BackingField: 2
     <Size>k__BackingField: {x: 1, y: 1}
@@ -44,8 +44,8 @@ MonoBehaviour:
     <Damage>k__BackingField: 50
     <Description>k__BackingField: Low range, Slow attack, high damage
     <Price>k__BackingField: 300
-    <Icon>k__BackingField: {fileID: 21300000, guid: ab9c07c40b58d834783f2ac517a57f71, type: 3}
-    <ProjectilePrefab>k__BackingField: {fileID: 8561120502374992526, guid: 36832fafeb96ae64ab3a12dcdb86308c, type: 3}
+    <Icon>k__BackingField: {fileID: 21300000, guid: 0070b71d1a48b174ebb666de105ced98, type: 3}
+    <ProjectilePrefab>k__BackingField: {fileID: 3935785601655938638, guid: 84b0824830b7eea47925a90cc68bc3d8, type: 3}
     <Health>k__BackingField: 300
     <AttackRate>k__BackingField: 0.3
-    <ShootRange>k__BackingField: 1.5
+    <ShootRange>k__BackingField: 2

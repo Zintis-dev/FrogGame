@@ -127,7 +127,7 @@ public class EnemyBehavior : MonoBehaviour
         agent.enabled = false;
         enabled = false;
 
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1f);
     }
 
     private void SetAnimationState(AnimationState newState)
